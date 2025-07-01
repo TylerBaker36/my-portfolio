@@ -12,7 +12,8 @@ type Props = {
 };
 
 export default function ProjectDetail({ params }: Props) {
-  const project = projects.find((p) => p.slug === params.slug);
+  const {slug} = params;
+  const project = projects.find((p) => p.slug === slug);
 
   if (!project) return notFound();
 

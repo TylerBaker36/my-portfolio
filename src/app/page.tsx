@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import PageWrapper from "./components/PageWrapper";
 
 export default function Home() {
@@ -15,18 +16,18 @@ export default function Home() {
       I build weird mechanics, chase clever ideas, and test everything like it’s broken (because it probably is).
     </p>
     <div className="space-x-4">
-      <a
+      <Link
         href="/projects"
         className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
       >
         View Projects
-      </a>
-      <a
+      </Link>
+      <Link
         href="/contact"
         className="border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white font-semibold py-2 px-4 rounded"
       >
         Contact Me
-      </a>
+      </Link>
     </div>
   </div>
 </main>

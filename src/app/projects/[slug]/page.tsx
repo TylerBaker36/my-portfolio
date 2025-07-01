@@ -5,11 +5,13 @@ import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
 import rehypePrism from 'rehype-prism-plus';
 
-export default function ProjectDetail({
-  params,
-}: {
-  params: { slug: string };
-}) {
+interface ProjectDetailPageProps {
+  params: {
+    slug: string;
+  };
+}
+
+export default function ProjectDetail({ params }: ProjectDetailPageProps) {
   const project = projects.find((p) => p.slug === params.slug);
 
   if (!project) return notFound();

@@ -5,7 +5,13 @@ import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
 import rehypePrism from 'rehype-prism-plus';
 
-export default function ProjectDetail({ params }: { params: { slug: string } }) {
+type Props = {
+  params: {
+    slug: string;
+  };
+};
+
+export default function ProjectDetail({ params }: Props) {
   const project = projects.find((p) => p.slug === params.slug);
 
   if (!project) return notFound();
@@ -28,17 +34,6 @@ export default function ProjectDetail({ params }: { params: { slug: string } }) 
           </a>
         )}
 
-        {/* Tech List (optional) */}
-        {project.tags && (
-          <>
-            <h2 className="text-2xl font-semibold mb-2">Technologies Used:</h2>
-            <ul className="list-disc list-inside text-gray-400 mb-6">
-              {project.tags.map((tag, i) => (
-                <li key={i}>{tag}</li>
-              ))}
-            </ul>
-          </>
-        )}
 
         {/* Long-form content */}
         {project.content && (

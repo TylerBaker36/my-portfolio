@@ -5,15 +5,9 @@ import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
 import rehypePrism from 'rehype-prism-plus';
 
-type Props = {
-  params: {
-    slug: string;
-  };
-};
-
-export default function ProjectDetail({ params }: Props) {
-  const {slug} = params;
-  const project = projects.find((p) => p.slug === slug);
+// ✅ Remove the manual Props type
+export default function ProjectDetail({ params }: { params: { slug: string } }) {
+  const project = projects.find((p) => p.slug === params.slug);
 
   if (!project) return notFound();
 
@@ -23,7 +17,6 @@ export default function ProjectDetail({ params }: Props) {
         <h1 className="text-4xl font-bold mb-4">{project.title}</h1>
         <p className="text-lg text-gray-300 mb-6">{project.description}</p>
 
-        {/* External link if available */}
         {project.link && (
           <a
             href={project.link}
@@ -35,8 +28,6 @@ export default function ProjectDetail({ params }: Props) {
           </a>
         )}
 
-
-        {/* Long-form content */}
         {project.content && (
           <div className="prose prose-invert max-w-none mb-8">
             <ReactMarkdown rehypePlugins={[rehypePrism]}>
@@ -45,7 +36,6 @@ export default function ProjectDetail({ params }: Props) {
           </div>
         )}
 
-        {/* Gallery */}
         {project.gallery && project.gallery.length > 0 && (
           <div className="grid gap-4 md:grid-cols-2">
             {project.gallery.map((src, i) => (
@@ -64,3 +54,4 @@ export default function ProjectDetail({ params }: Props) {
     </PageWrapper>
   );
 }
+
